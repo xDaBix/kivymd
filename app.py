@@ -1,11 +1,12 @@
 from kivy.app import App 
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
-from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout as Gr
 from kivy.core.window import Window
 
-Window.clearcolor = (1,1,1,1)
+# Window.clearcolor = (1,1,1,1)
 
 # class Myapp(App):
 #     def build(self):
@@ -34,16 +35,14 @@ Window.clearcolor = (1,1,1,1)
 
 class BoxApp(App):
     def build(self):
-        box=BoxLayout(orientation="vertical",spacing=10,padding=10)
-        
-        btn1=Button(text="button1")
-        btn2=Button(text="button2")
-        btn3=Button(text="button3")
-        
-        box.add_widget(btn1)
-        box.add_widget(btn2)
-        box.add_widget(btn3)
-        return box 
+        layout=Gr(cols=1,spacing=40,padding=150,row_force_default=True,row_default_height=40)
+        email=TextInput(hint_text="Enter your name",multiline=False)
+        password=TextInput(hint_text="Enter your password",multiline=False,password=True)
+        btn=Button(text="Login",size_hint=(.09,.1),pos_hint={"center_x":.5,"center_y":.5})
+        layout.add_widget(email)
+        layout.add_widget(password)
+        layout.add_widget(btn)
+        return layout 
     
 BoxApp().run()
 
