@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% extends 'restaurants/base.html' %}
+
+    {% block content %}
+    <div class="container">
+        <h1>Order from {{ restaurant.name }}</h1>
+        <form method="POST" action="{% url 'place_order' restaurant.id %}">
+            {% csrf_token %}
+            <h2>Menu</h2>
+            <ul>
+                {% for item in menu_items %}
+                <li>
+                    <label>
+                        <input type="checkbox" name="menu_items" value="{{ item.id }}">
+                        {{ item.name }} - ${{ item.price }}
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'users/navbar.html' %}
+    <div class="container">
+        <h1>{{ user.username }}'s Profile</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>Joined on: {{ user.date_joined }}</p>
+
+        <h2>Your Orders</h2>
+        <ul>
+            {% for order in user.orders.all %}
+                <li>
+                    <a href="{% url 'order_detail' order.id %}">Order #{{ order.id }} - {{ order.status }}</a>
+                </li>
+            {% empty %}
+                <li>No orders found.</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in user.reviews.all %}
+                <li>
+                    <strong>{{ review.restaurant.name }}</strong>: {{ review.rating }} - {{ review.comment }}
+                </li>
+            {% empty %}
+                <li>No reviews found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

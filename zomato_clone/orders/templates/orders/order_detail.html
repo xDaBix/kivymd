@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% extends 'restaurants/base.html' %}
+
+    {% block content %}
+    <div class="order-detail">
+        <h1>Order Detail</h1>
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Restaurant:</strong> {{ order.restaurant.name }}</p>
+        <p><strong>Items:</strong></p>
+        <ul>
+            {% for item in order.items.all %}
+                <li>{{ item.name }} - {{ item.quantity }} x {{ item.price }}</li>
+            {% endfor %}
+        </ul>
+        <p><strong>Total Price:</strong> {{ order.total_price }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Placed on:</strong> {{ order.created_at }}</p>
+    </div>
+    {% endblock %}
+</body>
+</html>

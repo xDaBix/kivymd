@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant List</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include 'restaurants/base.html' %}
+    <div class="container">
+        <h1>Welcome to Zomato Clone</h1>
+        <h2>Available Restaurants</h2>
+        <div class="restaurant-list">
+            {% for restaurant in restaurants %}
+                <div class="restaurant-item">
+                    <h3><a href="{% url 'restaurant_detail' restaurant.id %}">{{ restaurant.name }}</a></h3>
+                    <p>{{ restaurant.cuisine_type }}</p>
+                    <p>Rating: {{ restaurant.rating }}</p>
+                </div>
+            {% empty %}
+                <p>No restaurants available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

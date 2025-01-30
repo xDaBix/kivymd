@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurant.name }}</title>
+    <link rel="stylesheet" href="{% static 'restaurants/css/style.css' %}">
+</head>
+<body>
+    {% extends 'restaurants/base.html' %}
+
+    {% block content %}
+    <div class="restaurant-detail">
+        <h1>{{ restaurant.name }}</h1>
+        <p><strong>Location:</strong> {{ restaurant.location }}</p>
+        <p><strong>Cuisine:</strong> {{ restaurant.cuisine_type }}</p>
+        <p><strong>Rating:</strong> {{ restaurant.rating }}</p>
+        <p>{{ restaurant.description }}</p>
+
+        <h2>Menu</h2>
+        <ul>
+            {% for item in restaurant.menu_items.all %}
+            <li>
+                <strong>{{ item.name }}</strong> - {{ item.price }} 
+                <a href="{% url 'order' item.id %}">Order Now</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Reviews</h2>
+        <ul>
+            {% for review in restaurant.reviews.all %}
+            <li>
+                <strong>{{ review.user.username }}</strong>: {{ review.rating }} - {{ review.comment }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'index' %}">Back to Restaurants</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

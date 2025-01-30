@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your order!</p>
+        <p>Your order number is: <strong>{{ order.id }}</strong></p>
+        <p>Order Details:</p>
+        <ul>
+            {% for item in order.items.all %}
+                <li>{{ item.name }} - Quantity: {{ item.quantity }}</li>
+            {% endfor %}
+        </ul>
+        <p>Total Amount: <strong>${{ order.total_amount }}</strong></p>
+        <p>We will notify you once your order is on the way!</p>
+        <a href="{% url 'order_list' %}">View Your Orders</a>
+    </div>
+</body>
+</html>
