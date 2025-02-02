@@ -36,14 +36,17 @@ from kivy.core.window import Window
 class BoxApp(App):
     def build(self):
         layout=Gr(cols=1,spacing=40,padding=150,row_force_default=True,row_default_height=40)
-        email=TextInput(hint_text="Enter your name",multiline=False)
-        password=TextInput(hint_text="Enter your password",multiline=False,password=True)
-        btn=Button(text="Login",size_hint=(.09,.1),pos_hint={"center_x":.5,"center_y":.5})
-        layout.add_widget(email)
-        layout.add_widget(password)
-        layout.add_widget(btn)
+        self.email=TextInput(hint_text="Enter your name",multiline=False)
+        self.password=TextInput(hint_text="Enter your password",multiline=False,password=True)
+        self.btn=Button(text="Login",on_press=self.submitbtn,size_hint=(.09,.1),pos_hint={"center_x":.5,"center_y":.5}, )
+        layout.add_widget(self.email)
+        layout.add_widget(self.password)
+        layout.add_widget(self.btn)
         return layout 
-    
+
+    def submitbtn(self,obj):
+        print(f"email={self.email.text}")
+        print(f"password={self.password.text}")
 BoxApp().run()
 
 
