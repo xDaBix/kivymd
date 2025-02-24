@@ -62,21 +62,21 @@ MDBoxLayout:
 # HelloApp().run()
 
 
-# class HelloApp(MDApp):
-#     def build(self):
-#         self.theme_cls.theme_style="Dark"
-#         return MDRaisedButton(text="click me",pos_hint={"center_x":.5,"center_y":.5})
-    
-# HelloApp().run()
-
-
 class HelloApp(MDApp):
     def build(self):
-        scrn=Screen()
-        bldr=Builder.load_string(style)
-        scrn.add_widget(bldr)
-        return scrn
+        self.theme_cls.theme_style="Dark"
+        return MDRaisedButton(text="click me",pos_hint={"center_x":.5,"center_y":.5})
+    
 HelloApp().run()
+
+
+# class HelloApp(MDApp):
+#     def build(self):
+#         scrn=Screen()
+#         bldr=Builder.load_string(style)
+#         scrn.add_widget(bldr)
+#         return scrn
+# HelloApp().run()
 
         
         
