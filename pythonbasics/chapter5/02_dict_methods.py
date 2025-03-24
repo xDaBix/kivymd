@@ -1,3 +1,5 @@
+
+d={} #empty dict
 marks={
     "harry":90,
     "manan":99,
