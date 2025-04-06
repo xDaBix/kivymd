@@ -1,0 +1,21 @@
+(
+select CITY, CHAR_LENGTH(CITY) from station
+    order by  CHAR_LENGTH(CITY) ASC , CITY ASC
+    LIMIT 1
+)
+union
+(
+select CITY, CHAR_LENGTH(CITY) from station
+    order by  CHAR_LENGTH(CITY) DESC , CITY DESC
+    LIMIT 1
+);
+
+
+-------------------------------------------------------------------------------------------------------
+select CITY from STATION where CITY LIKE "a%" or CITY LIKE "e%" or CITY LIKE "i%" or CITY LIKE "o%" or CITY LIKE "u%"
+
+------------------------------------------------------------------------------------------------------
+SELECT Name 
+FROM STUDENTS 
+WHERE Marks > 75 
+ORDER BY RIGHT(Name, 3), ID;
